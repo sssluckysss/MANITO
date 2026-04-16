@@ -1,57 +1,634 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>오지민 이사님 마니또 선물 카드</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');
-        body { background-color: #fdf6ff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 40px 0; font-family: 'Gaegu', cursive; }
-        @media print { body { -webkit-print-color-adjust: exact; background-color: white; padding: 0; } .no-print { display: none; } .letter-container { border: 5px dotted #5eead4 !important; box-shadow: none !important; margin: 0; width: 100%; } }
-        .letter-container { width: 550px; padding: 50px 40px; background: white; border: 10px dotted #5eead4; border-radius: 50px; box-shadow: 0 15px 30px rgba(94, 234, 212, 0.2); position: relative; text-align: center; }
-        .deco { position: absolute; font-size: 35px; }
-        .title-main { color: #2dd4bf; font-size: 36px; margin: 0 0 40px 0; line-height: 1.2; background: linear-gradient(to top, #ccfbf1 40%, transparent 40%); display: inline-block; }
-        .acrostic-section { display: flex; flex-direction: column; gap: 20px; margin: 30px 0; }
-        .row { display: flex; align-items: flex-start; background: #f0fdfa; padding: 20px; border-radius: 25px; }
-        .initial { background: #fbbf24; color: white; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; border-radius: 15px; font-weight: bold; font-size: 28px; margin-right: 20px; flex-shrink: 0; box-shadow: 3px 3px 0px #d97706; }
-        .content-area { border: none; font-family: 'Gaegu', cursive; font-size: 24px; width: 100%; color: #334155; padding: 0; outline: none; background: transparent; resize: none; overflow: hidden; line-height: 1.4; }
-        .footer-msg { margin-top: 30px; font-size: 22px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 20px; }
-        .highlight { color: #f43f5e; font-weight: bold; font-size: 26px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오지민 이사님 마니또 선물 카드</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Gaegu', cursive;
+      overflow-x: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top, #fff7fb 0%, #fdf6ff 40%, #eefcfb 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+      position: relative;
+    }
+
+    .floating-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .float {
+      position: absolute;
+      bottom: -80px;
+      font-size: clamp(20px, 3vw, 36px);
+      opacity: 0.22;
+      animation: floatUp linear infinite;
+      filter: blur(0.2px);
+    }
+
+    .float:nth-child(1)  { left: 4%;  animation-duration: 10s; animation-delay: 0s; }
+    .float:nth-child(2)  { left: 12%; animation-duration: 13s; animation-delay: 2s; }
+    .float:nth-child(3)  { left: 20%; animation-duration: 11s; animation-delay: 4s; }
+    .float:nth-child(4)  { left: 30%; animation-duration: 15s; animation-delay: 1s; }
+    .float:nth-child(5)  { left: 40%; animation-duration: 12s; animation-delay: 5s; }
+    .float:nth-child(6)  { left: 50%; animation-duration: 14s; animation-delay: 3s; }
+    .float:nth-child(7)  { left: 60%; animation-duration: 10s; animation-delay: 6s; }
+    .float:nth-child(8)  { left: 70%; animation-duration: 16s; animation-delay: 2s; }
+    .float:nth-child(9)  { left: 80%; animation-duration: 12s; animation-delay: 7s; }
+    .float:nth-child(10) { left: 90%; animation-duration: 14s; animation-delay: 4s; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.9);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.22;
+      }
+      50% {
+        transform: translateY(-45vh) translateX(10px) rotate(8deg) scale(1);
+        opacity: 0.28;
+      }
+      100% {
+        transform: translateY(-110vh) translateX(-12px) rotate(-10deg) scale(1.08);
+        opacity: 0;
+      }
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .top-message {
+      margin-bottom: 22px;
+      color: #0f766e;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 700;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+      animation: bob 2.2s ease-in-out infinite;
+    }
+
+    .sub-message {
+      margin-top: -8px;
+      margin-bottom: 28px;
+      color: #64748b;
+      font-size: clamp(18px, 2vw, 24px);
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .envelope-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 460px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .envelope-stage.hide {
+      opacity: 0;
+      transform: scale(0.96);
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .envelope-wrap {
+      position: relative;
+      width: min(88vw, 440px);
+      height: 310px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.25s ease;
+    }
+
+    .envelope-wrap:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 28px;
+      animation: twinkle 1.8s ease-in-out infinite;
+    }
+
+    .sparkle.s1 { top: -14px; left: 22px; animation-delay: 0s; }
+    .sparkle.s2 { top: 8px; right: 12px; animation-delay: 0.5s; }
+    .sparkle.s3 { bottom: 20px; left: -18px; animation-delay: 1s; }
+    .sparkle.s4 { bottom: 4px; right: -8px; animation-delay: 1.4s; }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.45; }
+      50% { transform: scale(1.15) rotate(8deg); opacity: 1; }
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 0;
+      filter: drop-shadow(0 18px 30px rgba(45, 212, 191, 0.18));
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 70px 0 0 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fffe 100%);
+      border: 5px solid #99f6e4;
+      border-radius: 22px;
+    }
+
+    .envelope-front {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 170px;
+      background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 45%, #a5f3fc 100%);
+      clip-path: polygon(0 0, 50% 72%, 100% 0, 100% 100%, 0 100%);
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+      border-left: 5px solid #99f6e4;
+      border-right: 5px solid #99f6e4;
+      border-bottom: 5px solid #99f6e4;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 68px;
+      margin: auto;
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(135deg, #5eead4 0%, #67e8f9 100%);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transform-origin: top center;
+      transition: transform 1s ease;
+      z-index: 4;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 122px;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fef3c7, #fbbf24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      box-shadow: 0 8px 18px rgba(251, 191, 36, 0.35);
+      z-index: 5;
+      transition: opacity 0.5s ease;
+    }
+
+    .envelope-letter {
+      position: absolute;
+      left: 50%;
+      top: 94px;
+      transform: translateX(-50%);
+      width: 84%;
+      min-height: 180px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff 0%, #fffdf8 100%);
+      border: 3px dashed #f9a8d4;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+      padding: 18px 16px;
+      z-index: 2;
+      transition: transform 1s ease, opacity 0.8s ease;
+      color: #475569;
+      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .envelope-text {
+      line-height: 1.3;
+    }
+
+    .hint {
+      margin-top: 24px;
+      color: #475569;
+      font-size: clamp(18px, 2vw, 24px);
+      animation: pulseText 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .opened .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .opened .seal {
+      opacity: 0;
+    }
+
+    .opened .envelope-letter {
+      transform: translateX(-50%) translateY(-92px);
+    }
+
+    .card-screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+      margin-top: 12px;
+    }
+
+    .card-screen.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .letter-container {
+      width: min(100%, 620px);
+      margin: 0 auto;
+      padding: 50px 34px 38px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 10px dotted #5eead4;
+      border-radius: 50px;
+      box-shadow:
+        0 18px 40px rgba(94, 234, 212, 0.2),
+        0 8px 20px rgba(251, 191, 36, 0.12);
+      position: relative;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      animation: appear 0.8s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .deco {
+      position: absolute;
+      font-size: 35px;
+      animation: decoBob 2.5s ease-in-out infinite;
+    }
+
+    .deco.d1 { top: -20px; left: -20px; }
+    .deco.d2 { top: -20px; right: -20px; animation-delay: .5s; }
+    .deco.d3 { bottom: -20px; left: -10px; animation-delay: 1s; }
+    .deco.d4 { bottom: -15px; right: -10px; animation-delay: 1.5s; }
+
+    @keyframes decoBob {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(6deg); }
+    }
+
+    .title-main {
+      color: #2dd4bf;
+      font-size: clamp(30px, 4vw, 38px);
+      margin: 0 0 36px 0;
+      line-height: 1.25;
+      background: linear-gradient(to top, #ccfbf1 42%, transparent 42%);
+      display: inline-block;
+      padding: 0 8px;
+      animation: fadeSlide 1s ease both;
+    }
+
+    .acrostic-section {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-start;
+      background: #f0fdfa;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 6px 16px rgba(45, 212, 191, 0.08);
+      animation: fadeSlide 0.9s ease both;
+    }
+
+    .row:nth-child(1) { animation-delay: 0.15s; }
+    .row:nth-child(2) { animation-delay: 0.3s; }
+    .row:nth-child(3) { animation-delay: 0.45s; }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .initial {
+      background: #fbbf24;
+      color: white;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 28px;
+      margin-right: 18px;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0px #d97706;
+    }
+
+    .content-area {
+      border: none;
+      font-family: 'Gaegu', cursive;
+      font-size: clamp(22px, 2.6vw, 24px);
+      width: 100%;
+      color: #334155;
+      padding: 0;
+      outline: none;
+      background: transparent;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.45;
+    }
+
+    .footer-msg {
+      margin-top: 28px;
+      font-size: clamp(20px, 2.4vw, 24px);
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 22px;
+      animation: fadeSlide 1s ease both;
+      animation-delay: 0.6s;
+    }
+
+    .highlight {
+      color: #f43f5e;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .replay-btn {
+      margin-top: 22px;
+      border: none;
+      background: linear-gradient(135deg, #2dd4bf, #60a5fa);
+      color: white;
+      font-family: 'Gaegu', cursive;
+      font-size: 22px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(45, 212, 191, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .replay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(45, 212, 191, 0.28);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 14px 28px;
+      }
+
+      .envelope-stage {
+        min-height: 400px;
+      }
+
+      .envelope-wrap {
+        height: 280px;
+      }
+
+      .envelope-back {
+        inset: 60px 0 0 0;
+      }
+
+      .envelope-flap {
+        top: 58px;
+      }
+
+      .seal {
+        top: 106px;
+        width: 68px;
+        height: 68px;
+        font-size: 30px;
+      }
+
+      .envelope-letter {
+        top: 84px;
+        min-height: 164px;
+        font-size: 22px;
+      }
+
+      .opened .envelope-letter {
+        transform: translateX(-50%) translateY(-78px);
+      }
+
+      .letter-container {
+        padding: 40px 20px 30px;
+        border-radius: 34px;
+      }
+
+      .row {
+        padding: 16px 14px;
+        border-radius: 20px;
+      }
+
+      .initial {
+        width: 42px;
+        height: 42px;
+        font-size: 24px;
+        margin-right: 12px;
+      }
+
+      .deco {
+        font-size: 30px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .floating-bg,
+      .top-message,
+      .sub-message,
+      .envelope-stage,
+      .hint,
+      .replay-btn {
+        display: none !important;
+      }
+
+      .card-screen {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .letter-container {
+        box-shadow: none !important;
+        border: 5px dotted #5eead4 !important;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="letter-container">
-        <div class="deco" style="top: -20px; left: -20px;">🎉</div>
-        <div class="deco" style="top: -20px; right: -20px;">💌</div>
-        <div class="deco" style="bottom: -20px; left: -10px;">🎁</div>
-        <div class="deco" style="bottom: -15px; right: -10px;">💖</div>
-        <h1 class="title-main">💖오지민 이사님께 드리는 응원💖</h1>
-        <div class="acrostic-section">
-            <div class="row">
-                <div class="initial">오</div>
-                <textarea class="content-area" rows="1">오지민 이사님!</textarea>
+  <div class="floating-bg" aria-hidden="true">
+    <span class="float">💖</span>
+    <span class="float">✨</span>
+    <span class="float">🎉</span>
+    <span class="float">💌</span>
+    <span class="float">🌷</span>
+    <span class="float">🎁</span>
+    <span class="float">🩵</span>
+    <span class="float">⭐</span>
+    <span class="float">💐</span>
+    <span class="float">💕</span>
+  </div>
+
+  <div class="wrap">
+    <div class="top-message">마니또에게 응원이 도착했어요!</div>
+    <div class="sub-message">봉투를 클릭해서 마음을 열어보세요 💌</div>
+
+    <div class="envelope-stage" id="envelopeStage">
+      <div class="envelope-wrap" id="envelopeWrap" onclick="openLetter()">
+        <div class="sparkle s1">✨</div>
+        <div class="sparkle s2">💖</div>
+        <div class="sparkle s3">🎀</div>
+        <div class="sparkle s4">⭐</div>
+
+        <div class="envelope opened-ready">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter" id="miniLetter">
+            <div class="envelope-text">
+              오지민 이사님께<br />
+              응원이 도착했어요 💖
             </div>
-            <div class="row">
-                <div class="initial" style="background: #38bdf8; box-shadow: 3px 3px 0px #0284c7;">지</div>
-                <textarea class="content-area" id="long-text">지치지 않는 열정! 프로페셔널한 모습! 곁에서 지켜보며 항상 감탄하며 배우고 있습니다. 이사님의 마니또가 되어서 이런 마음을 전달할 수 있어 아주 기쁘네요. 지치고 힘드실때도 있으시겠지만 당신을 응원하는 누군가가 항상 있다는 것을 생각하고 힘내세요!!! 오지민 화이팅!!!!!</textarea>
-            </div>
-            <div class="row">
-                <div class="initial" style="background: #f472b6; box-shadow: 3px 3px 0px #db2777;">민</div>
-                <textarea class="content-area" rows="1">민트초코</textarea>
-            </div>
+          </div>
+          <div class="envelope-flap" id="flap"></div>
+          <div class="seal" id="seal">💌</div>
+          <div class="envelope-front"></div>
         </div>
-        <div class="footer-msg">- 언제나 응원하는 <span class="highlight">당신의 마니또</span></div>
-        <p class="no-print" style="margin-top:20px; color:#ccc; font-size:14px;"></p>
+      </div>
     </div>
-    <script>
-        const textareas = document.querySelectorAll('.content-area');
-        textareas.forEach(target => {
-            target.style.height = 'auto';
-            target.style.height = (target.scrollHeight) + 'px';
-            target.addEventListener('input', (e) => {
-                e.target.style.height = 'auto';
-                e.target.style.height = (e.target.scrollHeight) + 'px';
-            });
-        });
-    </script>
+
+    <div class="hint" id="hint">봉투 클릭하기</div>
+
+    <div class="card-screen" id="cardScreen">
+      <div class="letter-container">
+        <div class="deco d1">🎉</div>
+        <div class="deco d2">💌</div>
+        <div class="deco d3">🎁</div>
+        <div class="deco d4">💖</div>
+
+        <h1 class="title-main">💖오지민 이사님께 드리는 응원💖</h1>
+
+        <div class="acrostic-section">
+          <div class="row">
+            <div class="initial">오</div>
+            <textarea class="content-area" rows="1" readonly>오지민 이사님!</textarea>
+          </div>
+
+          <div class="row">
+            <div class="initial" style="background: #38bdf8; box-shadow: 3px 3px 0px #0284c7;">지</div>
+            <textarea class="content-area" id="long-text" readonly>지치지 않는 열정! 프로페셔널한 모습! 곁에서 지켜보며 항상 감탄하며 배우고 있습니다. 이사님의 마니또가 되어서 이런 마음을 전달할 수 있어 아주 기쁘네요. 지치고 힘드실 때도 있으시겠지만, 당신을 응원하는 누군가가 항상 있다는 것을 생각하고 힘내세요!!! 오지민 화이팅!!!!!</textarea>
+          </div>
+
+          <div class="row">
+            <div class="initial" style="background: #f472b6; box-shadow: 3px 3px 0px #db2777;">민</div>
+            <textarea class="content-area" rows="1" readonly>민트초코</textarea>
+          </div>
+        </div>
+
+        <div class="footer-msg">
+          - 언제나 응원하는 <span class="highlight">당신의 마니또</span>
+        </div>
+
+        <button class="replay-btn" onclick="location.reload()">한 번 더 열어보기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const textareas = document.querySelectorAll('.content-area');
+
+    function resizeTextareas() {
+      textareas.forEach((target) => {
+        target.style.height = 'auto';
+        target.style.height = target.scrollHeight + 'px';
+      });
+    }
+
+    resizeTextareas();
+    window.addEventListener('load', resizeTextareas);
+    window.addEventListener('resize', resizeTextareas);
+
+    function openLetter() {
+      const envelopeWrap = document.getElementById('envelopeWrap');
+      const envelopeStage = document.getElementById('envelopeStage');
+      const cardScreen = document.getElementById('cardScreen');
+      const hint = document.getElementById('hint');
+
+      if (envelopeWrap.classList.contains('opened')) return;
+
+      envelopeWrap.classList.add('opened');
+      hint.style.opacity = '0';
+
+      setTimeout(() => {
+        envelopeStage.classList.add('hide');
+      }, 1100);
+
+      setTimeout(() => {
+        cardScreen.classList.add('show');
+        resizeTextareas();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1350);
+    }
+  </script>
 </body>
 </html>
